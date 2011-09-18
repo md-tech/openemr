@@ -56,8 +56,10 @@ $GLOBALS['oer_config']['ofx']['acctid'] 	= "123456789";
 //use FL for FLORIDA compatible format, leave blank for default
 $GLOBALS['oer_config']['prescriptions']['format'] = "";
 
-// Set this to true if you want the drug DEA number printed on prescriptions by default
-$GLOBALS['oer_config']['prescriptions']['show_DEA'] = false;
+// Set this to true if you want the drug DEA,NPI, and/or State License Number number printed on prescriptions by default
+$GLOBALS['oer_config']['prescriptions']['show_DEA'] = true;
+$GLOBALS['oer_config']['prescriptions']['show_NPI'] = true;
+$GLOBALS['oer_config']['prescriptions']['show_SLN'] = true;
 
 // Document storage repository document root. Must include a trailing slash.
 $GLOBALS['oer_config']['documents']['repopath'] = $GLOBALS['OE_SITE_DIR'] . "/documents/";

@@ -246,6 +246,17 @@ class C_Prescription extends Controller {
       $pdf->ezText('<b>' . xl('DEA') . ':</b>' . $p->provider->federal_drug_id, 12);
     else
       $pdf->ezText('<b>' . xl('DEA') . ':</b> ________________________', 12);
+      
+	if ($this->is_faxing || $GLOBALS['oer_config']['prescriptions']['show_NPI'])  
+        $pdf->ezText('<b>' . xl('NPI') . ':</b>' . $p->provider->npi, 12);
+	else
+	$pdf->ezText('<b>' . xl('NPI') . ':</b> _________________________', 12);
+    
+    if ($this->is_faxing || $GLOBALS['oer_config']['prescriptions']['show_SLN'])  
+        $pdf->ezText('<b>' . xl('State Medical Lic') . ':</b>' . $p->provider->state_license_number, 12);
+	else
+	$pdf->ezText('<b>' . xl('State Lic #') . ':</b> ___________________', 12);
+	
 		$pdf->ezColumnsStop();
 		if ($my_y < $pdf->y){
 			$pdf->ezSetY($my_y);
@@ -297,8 +308,16 @@ class C_Prescription extends Controller {
 	        echo ("</td>\n");
 	        echo ("<td>\n");
                 echo ('<b><span class="large">' .  $p->provider->get_name_display() . '</span></b>'. '<br>');
-                if ($GLOBALS['oer_config']['prescriptions']['show_DEA']) echo ('<span class="large"><b>' . xl('DEA') . ':</b>' . $p->provider->federal_drug_id . '</span>');
-                else echo ('<b><span class="large">' . xl('DEA') . ':</span></b> ________________________');
+                
+                if ($GLOBALS['oer_config']['prescriptions']['show_DEA']) echo ('<span class="large"><b>' . xl('DEA') . ':</b>' . $p->provider->federal_drug_id . '</span><br>');
+                else echo ('<b><span class="large">' . xl('DEA') . ':</span></b> ________________________<br>' );
+                
+                if ($GLOBALS['oer_config']['prescriptions']['show_NPI']) echo ('<span class="large"><b>' . xl('NPI') . ':</b>' . $p->provider->npi . '</span><br>');
+				else echo ('<b><span class="large">' . xl('NPI') . ':</span></b> ________________________<br>');
+                
+               if ($GLOBALS['oer_config']['prescriptions']['show_SLN']) echo ('<span class="large"><b>' . xl('State License Number') . ':</b>' . $p->provider->state_license_number . '</span><br>');
+				else echo ('<b><span class="large">' . xl('State License Number') . ':</span></b> ________________________<br>'); 
+                
 	        echo ("</td>\n");
 	        echo ("</tr>\n");
 	        echo ("<tr>\n");
@@ -364,6 +383,7 @@ class C_Prescription extends Controller {
                 echo ("div.paddingdiv {\n");
                 echo (" width: 524pt;\n");
 	        echo (" height: 668pt;\n");
+	        echo (" page-break-after: always;\n");
                 echo ("}\n");
                 echo ("div.scriptdiv {\n");
 	        echo (" padding-top: 12pt;\n");
