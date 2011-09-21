@@ -246,17 +246,19 @@ class C_Prescription extends Controller {
       $pdf->ezText('<b>' . xl('DEA') . ':</b>' . $p->provider->federal_drug_id, 12);
     else
       $pdf->ezText('<b>' . xl('DEA') . ':</b> ________________________', 12);
-      
+
+    if ($GLOBALS['oer_config']['prescriptions']['display_NPI'])
 	if ($this->is_faxing || $GLOBALS['oer_config']['prescriptions']['show_NPI'])  
         $pdf->ezText('<b>' . xl('NPI') . ':</b>' . $p->provider->npi, 12);
 	else
 	$pdf->ezText('<b>' . xl('NPI') . ':</b> _________________________', 12);
-    
+    ;
+    if ($GLOBALS['oer_config']['prescriptions']['display_SLN'])
     if ($this->is_faxing || $GLOBALS['oer_config']['prescriptions']['show_SLN'])  
         $pdf->ezText('<b>' . xl('State Lic. #') . ':</b>' . $p->provider->state_license_number, 12);
 	else
 	$pdf->ezText('<b>' . xl('State Lic. #') . ':</b> ___________________', 12);
-	
+    ;
 		$pdf->ezColumnsStop();
 		if ($my_y < $pdf->y){
 			$pdf->ezSetY($my_y);
@@ -311,13 +313,14 @@ class C_Prescription extends Controller {
                 
                 if ($GLOBALS['oer_config']['prescriptions']['show_DEA']) echo ('<span class="large"><b>' . xl('DEA') . ':</b>' . $p->provider->federal_drug_id . '</span><br>');
                 else echo ('<b><span class="large">' . xl('DEA') . ':</span></b> ________________________<br>' );
-                
+                if ($GLOBALS['oer_config']['prescriptions']['display_NPI'])
                 if ($GLOBALS['oer_config']['prescriptions']['show_NPI']) echo ('<span class="large"><b>' . xl('NPI') . ':</b>' . $p->provider->npi . '</span><br>');
 				else echo ('<b><span class="large">' . xl('NPI') . ':</span></b> ________________________<br>');
-                
+                ;
+               if ($GLOBALS['oer_config']['prescriptions']['display_SLN'])
                if ($GLOBALS['oer_config']['prescriptions']['show_SLN']) echo ('<span class="large"><b>' . xl('State Lic. #') . ':</b>' . $p->provider->state_license_number . '</span><br>');
 				else echo ('<b><span class="large">' . xl('State Lic. #') . ':</span></b> ________________________<br>'); 
-                
+                ;
 	        echo ("</td>\n");
 	        echo ("</tr>\n");
 	        echo ("<tr>\n");

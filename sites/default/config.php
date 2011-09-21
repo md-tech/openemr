@@ -60,6 +60,8 @@ $GLOBALS['oer_config']['prescriptions']['format'] = "";
 $GLOBALS['oer_config']['prescriptions']['show_DEA'] = true;
 $GLOBALS['oer_config']['prescriptions']['show_NPI'] = true;
 $GLOBALS['oer_config']['prescriptions']['show_SLN'] = true;
+$GLOBALS['oer_config']['prescriptions']['display_NPI'] = false;
+$GLOBALS['oer_config']['prescriptions']['display_SLN'] = false;
 
 // Document storage repository document root. Must include a trailing slash.
 $GLOBALS['oer_config']['documents']['repopath'] = $GLOBALS['OE_SITE_DIR'] . "/documents/";
