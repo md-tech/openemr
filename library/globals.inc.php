@@ -1449,5 +1449,18 @@ $GLOBALS_METADATA = array(
  //   
 ),
   //End RX Options
+  
+   // Begin Encounter Locking
+  // Encounter Lock Tab
+  //
+  'Enc Lock Option' => array(
+    'enc_lock' => array(
+      xl('Days to Lock Encounter'),
+      'num',                           // data type
+      '2',
+      xl('# of Days or 0 to disable')
+    ),
+     //   
+),
 );
 ?>
