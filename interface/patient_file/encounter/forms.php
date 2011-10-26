@@ -162,7 +162,7 @@ if (is_numeric($pid)) {
         &nbsp;&nbsp;&nbsp;<a  style="font-size:80%;" href="#" onClick='expandcollapse("collapse");'><?php xl('Collapse All','e'); ?></a>
     </div>
 
-    <?php if ($GLOBALS['enable_amc_prompting']) { ?>
+    <?php if ($GLOBALS['enable_amc_prompting'] && !acl_check('encounters', 'notes_a_v')) { ?>
         <div style='float:right;margin-right:25px;border-style:solid;border-width:1px;'>
             <div style='float:left;margin:5px 5px 5px 5px;'>
                 <table>
