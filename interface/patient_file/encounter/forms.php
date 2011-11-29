@@ -110,10 +110,12 @@ function divtoggle(spanid, divid) {
 </style>
 
 </head>
-<?php
+<?php if (!acl_check('encounters', 'notes_a_v')){?>
+<?php 
 $hide=1;
 require_once("$incdir/patient_file/encounter/new_form.php");
 ?>
+<?php;}?>
 <body class="body_top">
 
 <div id="encounter_forms">
@@ -292,7 +294,7 @@ if (is_numeric($pid)) {
         echo "<td style='border-bottom:1px solid'>";
         // a link to edit the form
         echo "<div class='form_header_controls'>";
-        if (($auth_notes_a  & ($interval <$enc_lock || $enc_lock ==0))  || (acl_check('admin', 'super'))) {
+        if (($auth_notes_a  && ($interval <$enc_lock || $enc_lock ==0))  || (acl_check('admin', 'super'))) {
         echo "<a target='".
                 ($GLOBALS['concurrent_layout'] ? "_parent" : "Main") .
                 "' href='$rootdir/patient_file/encounter/view_form.php?" .
